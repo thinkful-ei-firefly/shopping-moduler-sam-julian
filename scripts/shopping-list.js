@@ -48,7 +48,6 @@ const shoppingList = (function(){
     }
   
     // render the shopping list in the DOM
-    console.log('`render` ran');
     const shoppingListItemsString = generateShoppingItemsString(items);
   
     // insert that HTML into the DOM
