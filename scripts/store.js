@@ -43,6 +43,13 @@ const store = (function () {
     const filteredArr = this.items.filter(item => item.id !== itemToDelete.id);
     this.items = filteredArr;
   }
+  function toggleCheckedFilter(){
+    this.hideCheckedItems = !this.hideCheckedItems;
+  }
+  function setSearchTerm(val){
+    this.searchTerm = val;
+  }
+
   return {
     items,
     hideCheckedItems,
@@ -51,6 +58,8 @@ const store = (function () {
     addItem,
     findAndToggleChecked,
     findAndUpdateName,
-    findAndDelete
+    findAndDelete,
+    toggleCheckedFilter,
+    setSearchTerm
   };
 }() );
