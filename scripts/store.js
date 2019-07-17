@@ -11,9 +11,46 @@ const store = (function () {
   ];
   let hideCheckedItems = false;
   let searchTerm = '';
+  function findById(id) {
+    const itemArr = store.items;
+    return itemArr.find(item => item.id === id);
+  }
+  function addItem(name) {
+    try {
+      Item.validateName(name);
+      const newItem = Item.create(name);
+      store.items.push(newItem);
+    } catch (error) {
+      console.log(`Cannot add item: ${error.message}`);
+      
+    }
+  }
+  function findAndToggleChecked(id) {
+    const item = this.findById(id);
+    item.checked = !item.checked;
+  }
+  function findAndUpdateName(id, newName) {
+    try {
+      Item.validateName(newName);
+      const item = this.findById(id);
+      item.name = newName;
+    } catch (error) {
+      console.log(`Cannot updat name: ${error.message}`);
+    }
+  }
+  function findAndDelete(id) {
+    const itemToDelete = this.findById(id);
+    const filteredArr = this.items.filter(item => item.id !== itemToDelete.id);
+    this.items = filteredArr;
+  }
   return {
     items,
     hideCheckedItems,
-    searchTerm
+    searchTerm,
+    findById,
+    addItem,
+    findAndToggleChecked,
+    findAndUpdateName,
+    findAndDelete
   };
 }() );
